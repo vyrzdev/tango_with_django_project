@@ -1,4 +1,5 @@
 import os
+import random
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'tango_with_django_project.settings')
 
@@ -76,7 +77,7 @@ def populate():
         for _cat_data in cat_data['pages']:
             p = Page.objects.get_or_create(category=c, title=_cat_data['title'])[0]
             p.url = _cat_data['url']
-            p.views = 0
+            p.views = random.randint(0, 128)
             p.save()
 
     for c in Category.objects.all():
